@@ -66,3 +66,20 @@ sensitive_active.to_excel("sensitive_area_weapons.xlsx", index=False)
 # Save filtered list as Excel or CSV
 expiring_soon.to_csv("weapons_expiring_soon.csv", index=False)
 sensitive_active.to_excel("sensitive_area_weapons.xlsx", index=False)
+import streamlit as st
+import pandas as pd
+import matplotlib.pyplot as plt
+
+st.title("✅ Bhopal Weapon Tracker App Launched Successfully")
+
+try:
+    df = pd.read_csv("Bhopal_Weapon_License_Cleaned.csv")
+    st.success("✅ CSV loaded successfully")
+    st.write(df.head())
+except FileNotFoundError:
+    st.error("❌ File not found: 'Bhopal_Weapon_License_Cleaned.csv'")
+    st.stop()
+except Exception as e:
+    st.error(f"❌ Unexpected error: {e}")
+    st.stop()
+
